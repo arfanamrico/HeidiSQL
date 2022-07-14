@@ -1,0 +1,10 @@
+import pymysql
+
+con = pymysql.connect(db='db_karyawan', user='root', passwd='', host='localhost', port=3306, autocommit=True)
+cur = con.cursor()
+cur.execute('SELECT * FROM tkaryawan'
+data = cur.fetchall()
+
+print(data)
+
+note: sebelum di running, pastikan XAMPP nya sudah start
