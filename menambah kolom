@@ -1,0 +1,25 @@
+
+
+ALTER TABLE ioh_raw_4g
+ADD `SID_MOCN` VARCHAR (10) NOT NULL AFTER `Site ID`,
+ADD `MRBTS_ID` integer unsigned not null AFTER `CellName`,
+ADD `LNBTS_ID` integer unsigned not null AFTER `MRBTS_ID`,
+ADD `CELL_ID` integer unsigned not null AFTER `LNBTS_ID`,
+ADD `EARFCNDL` integer unsigned not null AFTER `CELL_ID`,
+ADD `DLMIMOMODE` integer unsigned not null AFTER `EARFCNDL`,
+ADD `DLCHBW` integer unsigned not null AFTER `DLMIMOMODE`,
+ADD `TAC` integer unsigned not null AFTER `DLCHBW`,
+ADD `RTWP_RX_Ant1` DOUBLE NULL DEFAULT NULL AFTER `BLER_DENOM`,
+ADD `RTWP_RX_Ant2` DOUBLE NULL DEFAULT NULL AFTER `RTWP_RX_Ant1`,
+ADD `MC_MS_CellDLPeakThroughput` DOUBLE NULL DEFAULT NULL AFTER `RTWP_RX_Ant2`,
+ADD `MC_MS_CellULPeakThroughput` DOUBLE NULL DEFAULT NULL AFTER `MC_MS_CellDLPeakThroughput`,
+ADD `complete_rach_nom` DOUBLE NULL DEFAULT NULL AFTER `MC_MS_CellULPeakThroughput`,
+ADD `complete_rach_denom` DOUBLE NULL DEFAULT NULL AFTER `complete_rach_nom`,
+ADD `PacketDelayBudget` DOUBLE NULL DEFAULT NULL AFTER `complete_rach_denom`,
+ADD `PRBsperTTIonPDSCH` DOUBLE NULL DEFAULT NULL AFTER `PacketDelayBudget`,
+ADD `PRBsperTTIonPUSCH` DOUBLE NULL DEFAULT NULL AFTER `PRBsperTTIonPDSCH`,
+ADD `Intra_Enb_HO_NOM` DOUBLE NULL DEFAULT NULL AFTER `PRBsperTTIonPUSCH`,
+ADD `Intra_Enb_HO_DENOM` DOUBLE NULL DEFAULT NULL AFTER `Intra_Enb_HO_NOM`,
+DROP PRIMARY KEY,
+ADD PRIMARY KEY (`DATE`,`Site ID`,`TIME`,CellName,MRBTS_ID,LNBTS_ID,CELL_ID) USING BTREE,
+ADD INDEX(`SID_MOCN`);
