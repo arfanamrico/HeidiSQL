@@ -19,3 +19,14 @@ cur.execute('SELECT * FROM ioh_raw_Lat')
 data = cur.fetchall()
 
 print(data)
+
+============cara melihat versi database mysql=============
+import pymysql
+
+con = pymysql.connect(db='npm', user='root', passwd='', host='localhost', port=3306, autocommit=True)
+
+with con:
+    cur = con.cursor()
+    cur.execute("select version()")
+    version = cur.fetchone()
+    print('database yang ada adalah mysql versi: {}' .format(version[0]))
